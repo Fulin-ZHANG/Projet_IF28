@@ -1,0 +1,41 @@
+---
+title: "IF28_DM_TD1"
+author: "Fulin"
+date: '2022-04-28'
+output:
+  html_document:
+    code_folding: show
+    theme:
+      color-contrast-warnings: false
+      bg: "#202123"
+      fg: "#B8BCC2"
+      primary: "#EA80FC"
+      secondary: "#00DAC6"
+      base_font:
+        google: Prompt
+      heading_font:
+        google: Proza Libre
+runtime: shiny
+---
+
+## La bibliothèque arules
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r graphique1, include=FALSE, echo=FALSE}
+library(arules)
+txn = read.transactions(file="C:/Users/chino/Documents/GitHub/IF28/transaction.csv", rm.duplicates= FALSE,format = "single",sep=",",cols =c(1,2))
+
+print(inspect(txn))
+itemFrequencyPlot <- itemFrequencyPlot(txn)
+print(itemFrequencyPlot)
+basket_rules <- apriori(txn,parameter = list(sup = 0.5,conf = 0.9,target="rules"))
+inspect(basket_rules)
+inspect(basket_rules[1])
+```
+
+
+
+
