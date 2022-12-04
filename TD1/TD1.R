@@ -1,3 +1,4 @@
+setwd("~/GitHub/Projet_IF28/TD1")
 library(arules)
 # library(ggplot2)
 # library(dplyr)
@@ -9,15 +10,15 @@ library(arules)
 # library(reshape2)
 # library(shiny)
 
-txn = read.transactions(file="C:/Users/chino/Documents/GitHub/IF28/transaction.csv", rm.duplicates= FALSE,format = "single",sep=",",cols =c(1,2))
-# txn <- read.csv("C:/Users/chino/Documents/GitHub/IF28/transaction.csv")
+txn = read.transactions(file="~/GitHub/Projet_IF28/TD1/transaction.csv", rm.duplicates= FALSE,format = "single",sep=",",cols =c(1,2))
+# txn <- read.csv("~/GitHub/IF28/transaction.csv")
 inspect(txn)
 itemFrequencyPlot(txn)
 basket_rules <- apriori(txn,parameter = list(sup = 0.5,conf = 0.9,target="rules"))
 inspect(basket_rules)
 inspect(basket_rules[1])
 
-library(arules)
+# library(arules)
 data("Epub")
 Epub
 summary(Epub)
@@ -76,7 +77,8 @@ plot(rules, control=list(jitter=2))
 rules_high_lift <- head(sort(rules, by="lift"), 3)
 inspect(rules_high_lift)
 
-plot(rules_high_lift, method="graph", control=list(type="items"))
+plot(rules_high_lift, method="graph")
+
 
 
 
